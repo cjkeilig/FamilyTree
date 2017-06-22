@@ -1,5 +1,6 @@
 package com.cory.projects.familytree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,12 +20,13 @@ public class Node {
         this.birthdate = birthdate;
         this.deathdate = deathdate;
         this.location = location;
+        this.children = new ArrayList<Integer>();
     }
 
-    private Node spouse;
-    private Node dad;
-    private Node mom;
-    private List<Node> children;
+    private int spouse;
+    private int dad;
+    private int mom;
+    private List<Integer> children;
 
     public String getName() {
         return name;
@@ -58,39 +60,39 @@ public class Node {
         this.location = location;
     }
 
-    public Node getSpouse() {
+    public int getSpouse() {
         return spouse;
     }
 
-    public void setSpouse(Node spouse) {
+    public void setSpouse(int spouse) {
         this.spouse = spouse;
     }
 
-    public Node getDad() {
+    public int getDad() {
         return dad;
     }
 
-    public void setDad(Node dad) {
+    public void setDad(int dad) {
         this.dad = dad;
     }
 
-    public Node getMom() {
+    public int getMom() {
         return mom;
     }
 
-    public void setMom(Node mom) {
+    public void setMom(int mom) {
         this.mom = mom;
     }
 
-    public List<Node> getChildren() {
+    public List<Integer> getChildren() {
         return children;
     }
 
-    public void removeChild(Node child) {
-        // code to remove child
+    public void removeChild(int child) {
+        children.remove(child);
     }
 
-    public void addChild(Node child) {
+    public void addChild(int child) {
         children.add(child);
     }
 }
