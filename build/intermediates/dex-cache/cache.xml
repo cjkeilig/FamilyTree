@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_f583533ef3b86efe5aad8262aac246d1542671e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.3.1_bd6b2f64edc7a0fd85264926600b2696456bcd7a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.3.1_3fd514669b7db4cd44782d2e2225cb8f8ec3359a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.3.1_784656c72ca29ee0d73a0d6a7149247f3bd90c3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.3.1_d10b40e1ebae18607117f57061b74ddf2409b67b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.3.1_f817b145dff8390f3ab7b1245a69b348295bca11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.3.1_c92c69233e50d684b4bde8070db480f99568e1b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.3.1_a975b4204a96560da3dc8279c3c8735dd55c2e09.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.3.1_344f120d941fb6ce1d5636327128f6082f2c95c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\unouser\Documents\FamilyTree\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.3.1_0f6b035691f7b4d5bae69d32d219bc805ff871a6.jar" />
+    </item>
+
+</items>

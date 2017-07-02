@@ -6,24 +6,59 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.ScaleGestureDetectorCompat;
+import android.support.v4.widget.TextViewCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 /**
  * Created by unouser on 6/26/2017.
  */
 
-public class CanvasView extends View implements GestureDetector.OnGestureListener {
+public class CanvasView extends View {
+
     private Paint paint;
-    private float AXIS_X_MIN = getPaddingLeft();
-    private float AXIS_Y_MIN = getPaddingBottom();
-    private float AXIS_X_MAX = getWidth() - getPaddingRight();
-    private float AXIS_Y_MAX = getHeight() - getPaddingTop();
-    private RectF container = new RectF(AXIS_X_MIN, AXIS_Y_MIN, AXIS_X_MAX, AXIS_Y_MAX);
+    private TextViewCompat node;
+
+    GestureDetectorCompat gestureDetector;
+
     public CanvasView(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
+        gestureDetector = new GestureDetectorCompat(getContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2,
+                                    float distanceX, float distanceY) {
+                // Scrolling uses math based on the viewport (as opposed to math using pixels).
+
+                // Pixel offset is the offset in screen pixels, while viewport offset is the
+                // offset within the current viewport.
+                Log.println(Log.INFO, "msg", String.format("On Scroll: %f %f %f %f %d %d", distanceX, distanceY, getX(), getY(), getScrollX(), getScrollY()));
+                //if (distanceX + getX())
+
+                int X = (int)(getScrollX() + distanceX);
+                int Y = (int)(getScrollY() + distanceY);
+                scrollTo(X,Y);
+                setScrollX(getScrollX() + (int)(distanceX));
+                setScrollY(getScrollY() + (int)(distanceY));
+                // Invalidates the View to update the display.
+                invalidate();
+                return true;
+            }
+
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+        });
+
+
 
     }
     @Override
@@ -31,60 +66,123 @@ public class CanvasView extends View implements GestureDetector.OnGestureListene
 
         paint.setColor(Color.rgb(0, 0, 0));
         paint.setStrokeWidth(10);
-        canvas.drawLine(getPaddingLeft(),getPaddingBottom()/2,getWidth() - getPaddingRight(),getPaddingBottom()/2, paint);
-        canvas.drawLine(getWidth()/2, getPaddingBottom(), getWidth()/2, getHeight() - getPaddingTop(), paint);
-        System.out.printf("%d %d %d %d %d %d", getWidth(), getHeight(),getPaddingBottom(), getPaddingTop(), getPaddingLeft(), getPaddingRight());
+        float height = getLayoutParams().height;
+        float width = getLayoutParams().width;
+        canvas.drawLine(getPaddingLeft(),height/2,width - getPaddingRight(),height/2, paint);
+        canvas.drawLine(width/2, getPaddingTop(), width/2, height - getPaddingTop(), paint);
+        Log.println(Log.INFO, "msg", String.format("On Draw: %d %d %d %d %d %d %f %f" , getWidth(), getHeight(),getPaddingBottom(), getPaddingTop(), getPaddingLeft(), getPaddingRight(), width, height));
     }
-    @TargetApi(16)
+
+    // The ‘active pointer’ is the one currently moving our object.
+    private int mActivePointerId = MotionEvent.INVALID_POINTER_ID;
+    private float mLastTouchX;
+    private float mLastTouchY;
+    private float mPosX, mPosY;
+    //private ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener());
+
     @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2,
-                            float distanceX, float distanceY) {
-        // Scrolling uses math based on the viewport (as opposed to math using pixels).
+    public boolean onTouchEvent(MotionEvent ev) {
+        // Let the ScaleGestureDetector inspect all events.
+        Log.println(Log.INFO, "msg", String.format("On Touch: %d %d %d %d %d %d", getWidth(), getHeight(), getPaddingBottom(), getPaddingTop(), getPaddingLeft(), getPaddingRight()));
 
-        // Pixel offset is the offset in screen pixels, while viewport offset is the
-        // offset within the current viewport.
-        float X = (distanceX * container.width()
-                / container.width());
-        float Y = (-distanceY * container.height()
-                / container.height());
-
-        // Updates the viewport, refreshes the display.
-
-
-        float curWidth = container.width();
-        float curHeight = container.height();
-        X = Math.max(AXIS_X_MIN, Math.min(X, AXIS_X_MAX - curWidth));
-        Y = Math.max(AXIS_Y_MIN + curHeight, Math.min(Y, AXIS_Y_MAX));
-        container.set(X, Y - curHeight, X + curWidth, Y);
-
-        // Invalidates the View to update the display.
-        postInvalidateOnAnimation();
+        gestureDetector.onTouchEvent(ev);
         return true;
+
     }
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
+    /* stuff below used to be a part of onTouchEvent()
+
+        final int action = MotionEventCompat.getActionMasked(ev);
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN: {
+                final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+                final float x = MotionEventCompat.getX(ev, pointerIndex);
+                final float y = MotionEventCompat.getY(ev, pointerIndex);
+
+                // Remember where we started (for dragging)
+                mLastTouchX = x;
+                mLastTouchY = y;
+                // Save the ID of this pointer (for dragging)
+                mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
+                break;
+            }
+
+            case MotionEvent.ACTION_MOVE: {
+                // Find the index of the active pointer and fetch its position
+                final int pointerIndex =
+                        MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+
+                final float x = MotionEventCompat.getX(ev, pointerIndex);
+                final float y = MotionEventCompat.getY(ev, pointerIndex);
+
+                // Calculate the distance moved
+                final float dx = x - mLastTouchX;
+                final float dy = y - mLastTouchY;
+
+                mPosX += dx;
+                mPosY += dy;
+
+                invalidate();
+
+                // Remember this touch position for the next move event
+                mLastTouchX = x;
+                mLastTouchY = y;
+
+                break;
+            }
+
+            case MotionEvent.ACTION_UP: {
+                mActivePointerId = MotionEvent.INVALID_POINTER_ID;
+                break;
+            }
+
+            case MotionEvent.ACTION_CANCEL: {
+                mActivePointerId = MotionEvent.INVALID_POINTER_ID;
+                break;
+            }
+
+            case MotionEvent.ACTION_POINTER_UP: {
+
+                final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+                final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
+
+                if (pointerId == mActivePointerId) {
+                    // This was our active pointer going up. Choose a new
+                    // active pointer and adjust accordingly.
+                    final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+                    mLastTouchX = MotionEventCompat.getX(ev, newPointerIndex);
+                    mLastTouchY = MotionEventCompat.getY(ev, newPointerIndex);
+                    mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
+                }
+                break;
+            }
+        }
         return true;
-    }
+    } */
+    //@Override
+    //public boolean onDown(MotionEvent motionEvent) {
+        //return true;
+    //}
 
-    @Override
-    public void onShowPress(MotionEvent motionEvent) {
+    //@Override
+    //public void onShowPress(MotionEvent motionEvent) {
+//
+    //}
 
-    }
+    //@Override
+    //public boolean onSingleTapUp(MotionEvent motionEvent) {
+        //return true;
+    //}
 
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return true;
-    }
+    //@Override
+    //public boolean onFling(MotionEvent motionEvent1, MotionEvent motionEvent2, float x, float y) {
+        //return true;
+    //}
 
-    @Override
-    public boolean onFling(MotionEvent motionEvent1, MotionEvent motionEvent2, float x, float y) {
-        return true;
-    }
+    //@Override
+    //public void onLongPress(MotionEvent motionEvent) {
 
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-
-    }
+   //}
 
 
 }
