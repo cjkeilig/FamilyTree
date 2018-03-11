@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/add_parent"
+        android:title="Add parent" />
+    <item android:id="@+id/add_sibling"
+        android:title="Add sibling" />
+    <item android:id="@+id/delete_person"
+        android:title="Delete person" />
+</menu>

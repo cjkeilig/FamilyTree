@@ -9,8 +9,11 @@ import android.sax.StartElementListener;
 import android.support.constraint.ConstraintLayout;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 public class PersonCard extends ConstraintLayout {
@@ -33,22 +36,25 @@ public class PersonCard extends ConstraintLayout {
     }
 
     private void init(Context context) {
+        // blow-out the person_card.xml into the ConstraintLayout in activity_main.xml
         LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.person_card, this);
 
-        View.OnLongClickListener longClickListener =  (v) -> {
-            // TODO: present popup box to delete person, add parent to person, add sibling to person
-
-            // TODO: based on their input, add or delete a control
-            return true;
-        };
-
-
+        // protected reference to person pic so that MainActivity can register the LongClick event
+        // probably doing this wrong
         personPic = (ImageView)findViewById(R.id.imageView3);
-        personPic.setOnLongClickListener(longClickListener);
 
     }
 
+    @Override
+    protected ContextMenu.ContextMenuInfo getContextMenuInfo() {
+        // This method is called when the context menu is about to show beside one of the registered views
+        ContextMenu.ContextMenuInfo menuInfo = super.getContextMenuInfo();
+        int myId = getId();
 
-
+        if (menuInfo == null) {
+            return new AdapterView.AdapterContextMenuInfo(this,myId,myId);
+        }
+        return menuInfo;
+    }
 }
