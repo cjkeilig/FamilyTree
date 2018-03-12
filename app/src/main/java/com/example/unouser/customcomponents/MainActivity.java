@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
         personCardList.add((PersonCard) findViewById(R.id.personCard));
         personCardList.add((PersonCard) findViewById(R.id.personCard2));
         personCardList.add((PersonCard) findViewById(R.id.personCard3));
-        personCardList.add((PersonCard) findViewById(R.id.personCard4));
-        personCardList.add((PersonCard) findViewById(R.id.personCard5));
+
 
         personCardList.forEach(personCard -> personCard.personPic.setOnLongClickListener(listener));
         personCardList.forEach(personCard -> registerForContextMenu(personCard));
@@ -151,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
         newPerson.setLayoutParams(personLayoutParams);
+        newPerson.setId(View.generateViewId());
         registerForContextMenu(newPerson);
         newPerson.personPic.setOnLongClickListener(listener);
 

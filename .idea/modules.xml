@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\android\CustomComponents\CustomComponents.iml" filepath="C:\android\CustomComponents\CustomComponents.iml" />
-      <module fileurl="file://C:\family\CustomComponents.iml" filepath="C:\family\CustomComponents.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\android\CustomComponents\app\app.iml" filepath="C:\android\CustomComponents\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/family.iml" filepath="$PROJECT_DIR$/family.iml" />
     </modules>
   </component>
